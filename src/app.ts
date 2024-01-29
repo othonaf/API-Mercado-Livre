@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({
-  origin: "https://frontend-mercado-livre.onrender.com/"
+  origin: "*"
 }));
 
 const server = app.listen(process.env.PORT || 3003, () => {
