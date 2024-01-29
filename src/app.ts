@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({
-  origin: "https://frontend-calculadora-mercado-p-65eb42d5d0ce.herokuapp.com"
+  origin: "https://frontend-mercado-livre.onrender.com/"
 }));
 
 const server = app.listen(process.env.PORT || 3003, () => {
