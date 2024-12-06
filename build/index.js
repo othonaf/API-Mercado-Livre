@@ -8,9 +8,12 @@ app_1.default.post('/calculadora', (req, res) => {
     try {
         const { qtde, valor } = req.body;
         let valor_parcela;
-        // Verificar se qtde e valor são números
+        // Verificar se qtde e valor são números:
         if (typeof qtde !== 'number' || typeof valor !== 'number') {
             return res.status(400).send('Os campos Quantidade e Valor devem ser do tipo número.');
+        }
+        if (qtde > 12) {
+            return res.status(400).send('A quantidade máxima de parcelas é 12.');
         }
         switch (qtde) {
             case 2:
@@ -52,10 +55,7 @@ app_1.default.post('/calculadora', (req, res) => {
         }
         const valor_divisor = (100 - (valor_parcela + 5.31)) / 100;
         const valor_final = (valor / valor_divisor).toFixed(2);
-        console.log(valor_parcela);
-        console.log(valor_divisor);
-        console.log(valor);
-        res.status(200).send(`O valor a ser cobrado no cartão é ${valor_final}`);
+        res.status(200).send(`O valor a ser cobrado no cartão é: R$ ${valor_final}`);
     }
     catch (error) {
         res.status(500).send("Erro no servidor.");
